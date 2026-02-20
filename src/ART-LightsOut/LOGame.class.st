@@ -1,3 +1,6 @@
+"
+This is the first commit of LightsOut on PBE, which was rewritten in Pharo13 using one-dimensional arrays instead of Array2D.
+"
 Class {
 	#name : 'LOGame',
 	#superclass : 'BorderedMorph',
