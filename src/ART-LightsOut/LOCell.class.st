@@ -14,11 +14,26 @@ Class {
 	#name : 'LOCell',
 	#superclass : 'SimpleSwitchMorph',
 	#instVars : [
-		'mouseAction'
+		'mouseAction',
+		'game',
+		'row',
+		'column'
 	],
 	#category : 'ART-LightsOut',
 	#package : 'ART-LightsOut'
 }
+
+{ #category : 'accessing' }
+LOCell >> column: anObject [ 
+
+	column := anObject
+]
+
+{ #category : 'accessing' }
+LOCell >> game: anObject [
+
+	game := anObject
+]
 
 { #category : 'initialization' }
 LOCell >> initialize [
@@ -35,12 +50,28 @@ LOCell >> initialize [
 
 { #category : 'accessing' }
 LOCell >> mouseAction: aBlock [
+
 	mouseAction := aBlock
 ]
 
 { #category : 'event handling' }
 LOCell >> mouseUp: anEvent [
 
-	self toggleState.
-	mouseAction value
+	super mouseUp: anEvent .
+	mouseAction ifNotNil: [ mouseAction value ]
+]
+
+{ #category : 'accessing' }
+LOCell >> row: anObject [ 
+
+	row := anObject
+]
+
+{ #category : 'logic' }
+LOCell >> toggleState [
+	"状態を反転させます。ONならOFFへ、OFFならONへ。"
+
+	self isOn
+		ifTrue: [ self turnOff ]
+		ifFalse: [ self turnOn ]
 ]
